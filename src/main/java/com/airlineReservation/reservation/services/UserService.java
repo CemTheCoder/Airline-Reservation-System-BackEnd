@@ -19,6 +19,10 @@ public class UserService {
 		return this.dao.findById(id);
 	}
 	
+	public User getOneUserByEmail(String email) {
+		return dao.findByEmail(email);
+	}
+	
 	public List<User> users() {
 		return this.dao.findAll();
 	}

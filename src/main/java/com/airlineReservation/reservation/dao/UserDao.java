@@ -9,5 +9,7 @@ import com.airlineReservation.reservation.entities.User;
 public interface UserDao extends JpaRepository<User, Integer>{
 	
 	public User findById(int id);
+	
+	public User findByEmail(String email);
 
 }
