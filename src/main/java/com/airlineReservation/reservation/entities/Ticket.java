@@ -18,8 +18,6 @@ public class Ticket {
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private int id;
 	
-	@Column(name = "price")
-	private double price;
 	
 	@ManyToOne
 	@JoinColumn(name = "user_id" , referencedColumnName = "id")
@@ -37,13 +35,7 @@ public class Ticket {
 		this.id = id;
 	}
 
-	public double getPrice() {
-		return price;
-	}
-
-	public void setPrice(double price) {
-		this.price = price;
-	}
+	
 
 	public User getUser() {
 		return user;

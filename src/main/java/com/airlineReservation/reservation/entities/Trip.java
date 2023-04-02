@@ -31,6 +31,18 @@ public class Trip {
 	@Column(name = "return_time")
 	private String returnTime;
 	
+
+	@Column(name = "price")
+	private double price;
+	
+	public double getPrice() {
+		return price;
+	}
+
+	public void setPrice(double price) {
+		this.price = price;
+	}
+
 	@OneToMany(mappedBy = "trip")
 	private List<AirPlane> airPlanes;
 

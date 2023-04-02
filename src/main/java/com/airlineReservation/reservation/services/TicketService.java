@@ -35,9 +35,7 @@ public class TicketService {
 	
 	public Ticket update(int id,TicketRequest r) {
 		Ticket t = this.dao.findById(id);
-		if(r.getPrice()!=t.getPrice()) {
-			t.setPrice(r.getPrice());
-		} 
+		
 		if(r.getUser()!=null) {
 			t.setUser(r.getUser());
 		}
