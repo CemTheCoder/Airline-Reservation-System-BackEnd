@@ -53,5 +53,16 @@ public class TripController {
 		
 		return new ResponseEntity<Trip>(this.service.update(id,r), HttpStatus.OK);
 	}
+	
+	@GetMapping("/tripsby")
+	public ResponseEntity<List<Trip>> searchTrip(
+			@RequestParam(name = "takeOffPoint") String takeOffPoint ,
+			@RequestParam(name = "destination") String destination,
+			@RequestParam(name = "takeOffTime") String takeOffTime,
+			@RequestParam(name = "returnTime") String returnTime
+			) {
+		
+		return new ResponseEntity<List<Trip>>(this.service.tripsBy(takeOffPoint, destination, takeOffTime , returnTime ),HttpStatus.OK);
+	}
 
 }

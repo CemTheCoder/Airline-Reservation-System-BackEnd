@@ -63,6 +63,8 @@ public class SecurityConfiguration {
           .permitAll()
           .requestMatchers("/city")
           .permitAll()
+          .requestMatchers("/tripsby")
+          .permitAll()
         .anyRequest()
           .authenticated()
         .and()

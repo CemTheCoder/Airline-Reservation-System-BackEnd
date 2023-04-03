@@ -2,16 +2,18 @@ package com.airlineReservation.reservation.services;
 
 import java.util.List;
 
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import com.airlineReservation.reservation.dao.TripDao;
 import com.airlineReservation.reservation.entities.Trip;
-import com.airlineReservation.reservation.entities.User;
+
 import com.airlineReservation.reservation.requests.TripRequest;
 
 @Service
 public class TripService {
 
+	@Autowired
 	private TripDao dao;
 	
 	public Trip trip(int id) {
@@ -39,6 +41,11 @@ public class TripService {
 	public void delete(int id) {
 		Trip t = this.dao.findById(id);
 		this.dao.delete(t);
+	}
+	
+	
+	public List<Trip> tripsBy(String takeOffPoint , String destination , String takeOffTime , String returnTime) {
+		return this.dao.search(takeOffPoint, destination,"%" + takeOffTime.substring(0,15)+"%","%"+ returnTime.substring(0,15)+"%");
 	}
 	
 	
