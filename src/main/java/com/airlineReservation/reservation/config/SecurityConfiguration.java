@@ -65,6 +65,8 @@ public class SecurityConfiguration {
           .permitAll()
           .requestMatchers("/tripsby")
           .permitAll()
+          .requestMatchers("/trip")
+          .permitAll()
         .anyRequest()
           .authenticated()
         .and()

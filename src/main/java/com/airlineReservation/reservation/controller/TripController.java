@@ -37,8 +37,14 @@ public class TripController {
 	}
 	
 	@PostMapping("/trip")
-	public ResponseEntity<Trip> createTrip(@RequestBody Trip t) {
-		return new ResponseEntity<Trip>(this.service.create(t) , HttpStatus.CREATED);
+	public ResponseEntity<Trip> createTrip(
+			@RequestParam(name = "takeoff") String takeOff,
+			@RequestParam(name = "destination") String destination,
+			@RequestParam(name = "takeOffTime") String takeOffTime,
+			@RequestParam(name = "returnTime") String returnTime,
+			@RequestParam(name = "price") double price
+			) {
+		return new ResponseEntity<Trip>(this.service.create(takeOff,destination,takeOffTime,returnTime,price) , HttpStatus.CREATED);
 	}
 	
 	@DeleteMapping("/trip")
@@ -59,10 +65,11 @@ public class TripController {
 			@RequestParam(name = "takeOffPoint") String takeOffPoint ,
 			@RequestParam(name = "destination") String destination,
 			@RequestParam(name = "takeOffTime") String takeOffTime,
-			@RequestParam(name = "returnTime") String returnTime
+			@RequestParam(name = "returnTime" ,  required = false , defaultValue = "null") String returnTime ,
+			@RequestParam(name = "type") int type
 			) {
 		
-		return new ResponseEntity<List<Trip>>(this.service.tripsBy(takeOffPoint, destination, takeOffTime , returnTime ),HttpStatus.OK);
+		return new ResponseEntity<List<Trip>>(this.service.tripsBy(takeOffPoint, destination, takeOffTime , returnTime , type ),HttpStatus.OK);
 	}
 
 }

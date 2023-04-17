@@ -35,6 +35,19 @@ public class Trip {
 	@Column(name = "price")
 	private double price;
 	
+	@Column(name ="type")
+	private int type;
+	
+	
+	
+	public int getType() {
+		return type;
+	}
+
+	public void setType(int type) {
+		this.type = type;
+	}
+
 	public double getPrice() {
 		return price;
 	}
