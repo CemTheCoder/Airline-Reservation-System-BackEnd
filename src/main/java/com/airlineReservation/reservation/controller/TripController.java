@@ -41,10 +41,11 @@ public class TripController {
 			@RequestParam(name = "takeoff") String takeOff,
 			@RequestParam(name = "destination") String destination,
 			@RequestParam(name = "takeOffTime") String takeOffTime,
-			@RequestParam(name = "returnTime") String returnTime,
+			@RequestParam(name = "returnTime" , required = false) String returnTime,
+			@RequestParam(name = "type") String type,
 			@RequestParam(name = "price") double price
 			) {
-		return new ResponseEntity<Trip>(this.service.create(takeOff,destination,takeOffTime,returnTime,price) , HttpStatus.CREATED);
+		return new ResponseEntity<Trip>(this.service.create(takeOff,destination,takeOffTime,returnTime,type,price) , HttpStatus.CREATED);
 	}
 	
 	@DeleteMapping("/trip")
@@ -66,10 +67,22 @@ public class TripController {
 			@RequestParam(name = "destination") String destination,
 			@RequestParam(name = "takeOffTime") String takeOffTime,
 			@RequestParam(name = "returnTime" ,  required = false , defaultValue = "null") String returnTime ,
-			@RequestParam(name = "type") int type
+			@RequestParam(name = "type") String type
 			) {
 		
 		return new ResponseEntity<List<Trip>>(this.service.tripsBy(takeOffPoint, destination, takeOffTime , returnTime , type ),HttpStatus.OK);
 	}
+	
+	@GetMapping("/tripsbyone")
+	public ResponseEntity<List<Trip>> searchTripOne(
+			@RequestParam(name = "takeOffPoint") String takeOffPoint ,
+			@RequestParam(name = "destination") String destination,
+			@RequestParam(name = "takeOffTime") String takeOffTime,
+			@RequestParam(name = "type") String type
+			) {
+		
+		return new ResponseEntity<List<Trip>>(this.service.tripsByOne(takeOffPoint, destination, takeOffTime , type ),HttpStatus.OK);
+	}
+	
 
 }

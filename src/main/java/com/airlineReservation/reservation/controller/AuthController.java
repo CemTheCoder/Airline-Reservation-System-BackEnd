@@ -68,6 +68,8 @@ public class AuthController {
 		else {
 		User user = new User();
 		user.setEmail(registerRequest.getEmail());
+		user.setName(registerRequest.getName());
+		user.setSurname(registerRequest.getSurname());
 		user.setPassword(encoder.encode(registerRequest.getPassword()));
 		user.setRoleId(2);
 		userService.create(user);
