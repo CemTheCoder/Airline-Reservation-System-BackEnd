@@ -41,11 +41,12 @@ public class TripController {
 			@RequestParam(name = "takeoff") String takeOff,
 			@RequestParam(name = "destination") String destination,
 			@RequestParam(name = "takeOffTime") String takeOffTime,
-			@RequestParam(name = "returnTime" , required = false) String returnTime,
-			@RequestParam(name = "type") String type,
-			@RequestParam(name = "price") double price
+			@RequestParam(name = "price") double price,
+			@RequestParam(name = "start") String start,
+			@RequestParam(name = "end") String end,
+			@RequestParam(name = "numOfPassengers") String numOfPassengers
 			) {
-		return new ResponseEntity<Trip>(this.service.create(takeOff,destination,takeOffTime,returnTime,type,price) , HttpStatus.CREATED);
+		return new ResponseEntity<Trip>(this.service.create(takeOff,destination,takeOffTime,price,start,end,numOfPassengers) , HttpStatus.CREATED);
 	}
 	
 	@DeleteMapping("/trip")
@@ -65,24 +66,14 @@ public class TripController {
 	public ResponseEntity<List<Trip>> searchTrip(
 			@RequestParam(name = "takeOffPoint") String takeOffPoint ,
 			@RequestParam(name = "destination") String destination,
-			@RequestParam(name = "takeOffTime") String takeOffTime,
-			@RequestParam(name = "returnTime" ,  required = false , defaultValue = "null") String returnTime ,
-			@RequestParam(name = "type") String type
+			@RequestParam(name = "takeOffTime") String takeOffTime
+			
 			) {
 		
-		return new ResponseEntity<List<Trip>>(this.service.tripsBy(takeOffPoint, destination, takeOffTime , returnTime , type ),HttpStatus.OK);
+		return new ResponseEntity<List<Trip>>(this.service.tripsBy(takeOffPoint, destination, takeOffTime  ),HttpStatus.OK);
 	}
 	
-	@GetMapping("/tripsbyone")
-	public ResponseEntity<List<Trip>> searchTripOne(
-			@RequestParam(name = "takeOffPoint") String takeOffPoint ,
-			@RequestParam(name = "destination") String destination,
-			@RequestParam(name = "takeOffTime") String takeOffTime,
-			@RequestParam(name = "type") String type
-			) {
-		
-		return new ResponseEntity<List<Trip>>(this.service.tripsByOne(takeOffPoint, destination, takeOffTime , type ),HttpStatus.OK);
-	}
+	
 	
 
 }

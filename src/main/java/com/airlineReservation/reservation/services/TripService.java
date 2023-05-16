@@ -24,14 +24,15 @@ public class TripService {
 		return this.dao.findAll();
 	}
 	
-	public Trip create(String takeOffPoint , String destination , String takeOffTime , String returnTime ,String type , double price) {
+	public Trip create(String takeOffPoint , String destination , String takeOffTime , double price , String start , String end , String numOfPassengers) {
 		Trip t = new Trip();
 		t.setTakeOffPoint(takeOffPoint);
 		t.setDestination(destination);
 		t.setTakeOffTime(takeOffTime);
-		t.setReturnTime(returnTime);
-		t.setType(type);
 		t.setPrice(price);
+		t.setStart(start);
+		t.setEnd(end);
+		t.setNumOfPassengers(numOfPassengers);
 		return this.dao.save(t);
 	}
 	
@@ -39,7 +40,6 @@ public class TripService {
 		Trip t = this.dao.findById(id);
 		t.setAirPlanes(r.getAirPlanes());
 		t.setDestination(r.getDestination());
-		t.setReturnTime(r.getReturnTime());
 		t.setTakeOffPoint(r.getTakeOffPoint());
 		t.setTakeOffTime(r.getTakeOffTime());
 		return this.dao.save(t);
@@ -51,23 +51,15 @@ public class TripService {
 	}
 	
 	
-	public List<Trip> tripsBy(String takeOffPoint , String destination , String takeOffTime , String returnTime , String type) {
-		
-		if(returnTime.equals("null")) {
-			return this.dao.search(takeOffPoint, destination,"%" + takeOffTime.substring(0,15)+"%","%"+ "" +"%",type);
-		}
-		else  {
-			return this.dao.search(takeOffPoint, destination,"%" + takeOffTime.substring(0,15)+"%","%"+ returnTime.substring(0,15)+"%",type);
-		}
-		
-		
-		
-	}
 	
-	public List<Trip> tripsByOne(String takeOffPoint , String destination , String takeOffTime , String type) {
 		
 		
-			return this.dao.searchOne(takeOffPoint, destination,"%" + takeOffTime.substring(0,15)+"%",type);
+
+	
+	public List<Trip> tripsBy(String takeOffPoint , String destination , String takeOffTime ) {
+		
+		
+			return this.dao.searchOne(takeOffPoint, destination,"%" + takeOffTime.substring(0,15)+"%");
 		
 		
 		

@@ -2,6 +2,7 @@ package com.airlineReservation.reservation.entities;
 
 import java.util.List;
 
+import io.micrometer.common.lang.Nullable;
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
@@ -28,26 +29,47 @@ public class Trip {
 	@Column(name = "take_off_time")
 	private String takeOffTime;
 	
-	@Column(name = "return_time")
-	private String returnTime;
+	@Column(name = "start")
+	private String start;
 	
+	@Column(name = "end")
+	private String end;
+	
+	@Column(name = "num_of_passengers")
+	private String numOfPassengers;
 
 	@Column(name = "price")
 	private double price;
 	
-	@Column(name ="type")
-	private String type;
+	
 	
 	
 	
 	
 
-	public String getType() {
-		return type;
+
+	public String getNumOfPassengers() {
+		return numOfPassengers;
 	}
 
-	public void setType(String type) {
-		this.type = type;
+	public void setNumOfPassengers(String numOfPassengers) {
+		this.numOfPassengers = numOfPassengers;
+	}
+
+	public String getStart() {
+		return start;
+	}
+
+	public void setStart(String start) {
+		this.start = start;
+	}
+
+	public String getEnd() {
+		return end;
+	}
+
+	public void setEnd(String end) {
+		this.end = end;
 	}
 
 	public double getPrice() {
@@ -93,13 +115,7 @@ public class Trip {
 		this.takeOffTime = takeOffTime;
 	}
 
-	public String getReturnTime() {
-		return returnTime;
-	}
-
-	public void setReturnTime(String returnTime) {
-		this.returnTime = returnTime;
-	}
+	
 
 	public List<AirPlane> getAirPlanes() {
 		return airPlanes;
