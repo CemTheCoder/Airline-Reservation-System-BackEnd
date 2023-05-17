@@ -18,6 +18,8 @@ public class Ticket {
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private int id;
 	
+	@Column(name = "name")
+	private String name;
 	
 	@ManyToOne
 	@JoinColumn(name = "user_id" , referencedColumnName = "id")
@@ -26,6 +28,29 @@ public class Ticket {
 	@ManyToOne
 	@JoinColumn(name = "trip_id"  , referencedColumnName = "id")
 	private Trip trip;
+	
+	
+	@Column(name = "seat_numbers")
+	private String seatNumbers;
+
+	
+	
+	
+	public String getName() {
+		return name;
+	}
+
+	public void setName(String name) {
+		this.name = name;
+	}
+
+	public String getSeatNumbers() {
+		return seatNumbers;
+	}
+
+	public void setSeatNumbers(String seatNumbers) {
+		this.seatNumbers = seatNumbers;
+	}
 
 	public int getId() {
 		return id;

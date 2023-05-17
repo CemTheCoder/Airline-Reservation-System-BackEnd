@@ -35,12 +35,14 @@ public class Trip {
 	@Column(name = "end")
 	private String end;
 	
-	@Column(name = "num_of_passengers")
-	private String numOfPassengers;
+	
 
 	@Column(name = "price")
 	private double price;
 	
+	@OneToMany(mappedBy = "trip")
+	private List<Ticket> tickets;
+	
 	
 	
 	
@@ -48,13 +50,15 @@ public class Trip {
 	
 
 
-	public String getNumOfPassengers() {
-		return numOfPassengers;
+	public List<Ticket> getTickets() {
+		return tickets;
 	}
 
-	public void setNumOfPassengers(String numOfPassengers) {
-		this.numOfPassengers = numOfPassengers;
+	public void setTickets(List<Ticket> tickets) {
+		this.tickets = tickets;
 	}
+
+	
 
 	public String getStart() {
 		return start;

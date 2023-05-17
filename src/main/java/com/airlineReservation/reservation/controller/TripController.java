@@ -43,10 +43,10 @@ public class TripController {
 			@RequestParam(name = "takeOffTime") String takeOffTime,
 			@RequestParam(name = "price") double price,
 			@RequestParam(name = "start") String start,
-			@RequestParam(name = "end") String end,
-			@RequestParam(name = "numOfPassengers") String numOfPassengers
+			@RequestParam(name = "end") String end
+			
 			) {
-		return new ResponseEntity<Trip>(this.service.create(takeOff,destination,takeOffTime,price,start,end,numOfPassengers) , HttpStatus.CREATED);
+		return new ResponseEntity<Trip>(this.service.create(takeOff,destination,takeOffTime,price,start,end) , HttpStatus.CREATED);
 	}
 	
 	@DeleteMapping("/trip")
