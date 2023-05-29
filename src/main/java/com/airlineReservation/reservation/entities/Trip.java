@@ -20,6 +20,9 @@ public class Trip {
 	@Column(name = "id")
 	private int id;
 	
+	@Column(name = "name")
+	private String name;
+	
 	@Column(name = "take_off_point")
 	private String takeOffPoint;
 	
@@ -45,9 +48,15 @@ public class Trip {
 	
 	
 	
+	 
 	
+	public String getName() {
+		return name;
+	}
 	
-	
+	public void setName(String name) {
+		this.name = name;
+	}
 
 
 	public List<Ticket> getTickets() {

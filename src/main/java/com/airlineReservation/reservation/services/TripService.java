@@ -24,7 +24,7 @@ public class TripService {
 		return this.dao.findAll();
 	}
 	
-	public Trip create(String takeOffPoint , String destination , String takeOffTime , double price , String start , String end ) {
+	public Trip create(String takeOffPoint , String destination , String takeOffTime , double price , String start , String end , String name) {
 		Trip t = new Trip();
 		t.setTakeOffPoint(takeOffPoint);
 		t.setDestination(destination);
@@ -32,7 +32,7 @@ public class TripService {
 		t.setPrice(price);
 		t.setStart(start);
 		t.setEnd(end);
-		
+		t.setName(name);
 		return this.dao.save(t);
 	}
 	
