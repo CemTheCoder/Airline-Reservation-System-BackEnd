@@ -6,6 +6,8 @@ import java.util.List;
 import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.core.userdetails.UserDetails;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
+
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
@@ -40,10 +42,22 @@ public class User implements UserDetails {
 	
 	
 	@OneToMany(mappedBy = "user")
+	@JsonIgnore
 	private List<Ticket> tickets;
 	
+	@OneToMany(mappedBy = "user")
+	@JsonIgnore
+	private List<CreditCard> cards;
 	
 	
+
+	public List<CreditCard> getCards() {
+		return cards;
+	}
+
+	public void setCards(List<CreditCard> cards) {
+		this.cards = cards;
+	}
 
 	public List<Ticket> getTickets() {
 		return tickets;

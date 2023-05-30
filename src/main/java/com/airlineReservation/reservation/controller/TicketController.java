@@ -3,7 +3,7 @@ package com.airlineReservation.reservation.controller;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.http.HttpStatus;
+import org.springframework.http.HttpStatus;import org.springframework.http.HttpStatusCode;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.DeleteMapping;
@@ -34,14 +34,19 @@ public class TicketController {
 		return new ResponseEntity<List<Ticket>>(this.service.tickets() , HttpStatus.OK);
 	}
 	
+	@GetMapping("/ticketske")
+	private ResponseEntity<List<Ticket>> getTicketsByUser(@RequestParam(name = "id") int id) {
+		return new ResponseEntity<List<Ticket>>(this.service.ticketsByUser(id) , HttpStatus.OK);
+	}
+	
 	@GetMapping("/ticket")
 	private ResponseEntity<Ticket> getTicket(@RequestParam(name = "id") int id) {
 		return new ResponseEntity<Ticket>(this.service.ticket(id) , HttpStatus.OK);
 	}
 	
 	@PostMapping("/ticket")
-	private ResponseEntity<Ticket> createTicket(@RequestBody Ticket t) {
-		return new ResponseEntity<Ticket>(this.service.create(t) , HttpStatus.CREATED);
+	private ResponseEntity<Ticket> createTicket(@RequestBody TicketRequest r) {
+		return new ResponseEntity<Ticket>(this.service.create(r) , HttpStatus.CREATED);
 	}
 	
 	@PutMapping("/ticket")

@@ -34,8 +34,19 @@ public class Ticket {
 	private String seatNumbers;
 
 	
+	@Column(name = "price")
+	private double price;
 	
 	
+	
+	public double getPrice() {
+		return price;
+	}
+
+	public void setPrice(double price) {
+		this.price = price;
+	}
+
 	public String getName() {
 		return name;
 	}

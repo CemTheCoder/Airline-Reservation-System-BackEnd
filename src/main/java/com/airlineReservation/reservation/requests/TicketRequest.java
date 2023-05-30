@@ -3,6 +3,10 @@ package com.airlineReservation.reservation.requests;
 import com.airlineReservation.reservation.entities.Trip;
 import com.airlineReservation.reservation.entities.User;
 
+import jakarta.persistence.Column;
+import jakarta.persistence.JoinColumn;
+import jakarta.persistence.ManyToOne;
+
 
 
 public class TicketRequest {
@@ -10,13 +14,65 @@ public class TicketRequest {
 	private int id;
 	
 	
-	private double price;
+	private String name;
 	
 	
 	private User user;
 	
 	
 	private Trip trip;
+	
+	
+	
+	private String seatNumbers;
+
+	
+	private double price;
+	
+	private int userId;
+	
+	private int tripId;
+	
+	
+
+	public String getName() {
+		return name;
+	}
+
+
+	public void setName(String name) {
+		this.name = name;
+	}
+
+
+	public String getSeatNumbers() {
+		return seatNumbers;
+	}
+
+
+	public void setSeatNumbers(String seatNumbers) {
+		this.seatNumbers = seatNumbers;
+	}
+
+
+	public int getUserId() {
+		return userId;
+	}
+
+
+	public void setUserId(int userId) {
+		this.userId = userId;
+	}
+
+
+	public int getTripId() {
+		return tripId;
+	}
+
+
+	public void setTripId(int tripId) {
+		this.tripId = tripId;
+	}
 
 
 	public int getId() {
