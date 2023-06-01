@@ -38,7 +38,19 @@ public class Ticket {
 	private double price;
 	
 	
+	@Column(name = "pnr")
+	private String pnr;
 	
+	
+	
+	public String getPnr() {
+		return pnr;
+	}
+
+	public void setPnr(String pnr) {
+		this.pnr = pnr;
+	}
+
 	public double getPrice() {
 		return price;
 	}

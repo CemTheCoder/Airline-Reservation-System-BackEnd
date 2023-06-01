@@ -68,6 +68,8 @@ public class SecurityConfiguration {
           .permitAll()
           .requestMatchers("/ticketske")
           .permitAll()
+          .requestMatchers("/ticketpnr")
+          .permitAll()
           .requestMatchers("/city")
           .permitAll()
           .requestMatchers("/tripsby")

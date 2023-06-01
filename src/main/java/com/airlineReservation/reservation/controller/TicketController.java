@@ -44,9 +44,15 @@ public class TicketController {
 		return new ResponseEntity<Ticket>(this.service.ticket(id) , HttpStatus.OK);
 	}
 	
+	@GetMapping("/ticketpnr")
+	private ResponseEntity<Ticket> getTicket(@RequestParam(name = "pnr") String pnr) {
+		return new ResponseEntity<Ticket>(this.service.byPnr(pnr) , HttpStatus.OK);
+	}
+	
 	@PostMapping("/ticket")
 	private ResponseEntity<Ticket> createTicket(@RequestBody TicketRequest r) {
-		return new ResponseEntity<Ticket>(this.service.create(r) , HttpStatus.CREATED);
+		this.service.create(r);
+		return new ResponseEntity<Ticket>( HttpStatus.CREATED);
 	}
 	
 	@PutMapping("/ticket")

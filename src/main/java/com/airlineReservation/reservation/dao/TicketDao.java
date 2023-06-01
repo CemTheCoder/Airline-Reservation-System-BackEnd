@@ -14,6 +14,8 @@ public interface TicketDao extends JpaRepository<Ticket, Integer> {
 	public Ticket findById(int id);
 	
 	public List<Ticket> findByUser(User u);
+	
+	public Ticket findByPnr(String pnr);
 
 	
 }

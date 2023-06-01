@@ -1,6 +1,7 @@
 package com.airlineReservation.reservation.services;
 
 import java.util.List;
+import java.util.Random;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -41,19 +42,35 @@ public class TicketService {
 		return this.dao.findByUser(u);
 	}
 	
-	public Ticket create(TicketRequest r) {
-		Ticket t = new Ticket();
-		t.setName(r.getName());
-		t.setPrice(r.getPrice());
-		t.setSeatNumbers(r.getSeatNumbers());
+	public void create(TicketRequest r) {
 		
 		User user = this.userService.user(r.getUserId());
 		Trip trip = this.tripService.trip(r.getTripId());
 		
-		t.setTrip(trip);
-		t.setUser(user);
+		String seats = r.getSeatNumbers();
 		
-		return this.dao.save(t);
+		String [] arrSeats = seats.split(",");
+		
+		
+		
+		for(int i = 0 ; i < arrSeats.length ; i++) {
+			 Random random=new Random();
+			   int a=random.nextInt(294748669);
+			   String pnrNum = Integer.toString(a) ;
+			Ticket t = new Ticket();
+			t.setName(r.getName());
+			t.setPrice(r.getPrice());
+			t.setSeatNumbers(arrSeats[i]);		
+			t.setTrip(trip);
+			t.setUser(user);
+			t.setPnr(pnrNum);
+			this.dao.save(t);
+		}
+		
+		
+		
+		
+		
 	}
 	
 	public Ticket update(int id,TicketRequest r) {
@@ -71,6 +88,11 @@ public class TicketService {
 	public void delete(int id) {
 		Ticket t = this.dao.findById(id);
 		this.dao.delete(t);
+	}
+	
+	
+	public Ticket byPnr(String pnr) {
+		return this.dao.findByPnr(pnr);
 	}
 	
 	
